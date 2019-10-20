@@ -3,14 +3,21 @@ package com.stefanini.hackaton.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+
+@NamedQueries(value = {
+		@NamedQuery(name = "Jogador.findByNickname",
+		query = "SELECT j FROM Jogador j WHERE j.nickname = :nickname")
+})
 @Entity
 @Table(name = "jogador")
 public class Jogador implements Serializable {
@@ -25,9 +32,9 @@ public class Jogador implements Serializable {
 	private Integer id;
 	private String nickname;
 	private String senha;
-	
-	@OneToOne
-	@JoinColumn(name="id")
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "idHeroi", referencedColumnName = "id")
 	Heroi heroi;
 
 	public Integer getId() {
@@ -61,7 +68,5 @@ public class Jogador implements Serializable {
 	public void setHeroi(Heroi heroi) {
 		this.heroi = heroi;
 	}
-
-
 
 }

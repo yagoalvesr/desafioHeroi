@@ -1,34 +1,17 @@
-package com.stefanini.hackaton.entities;
+package com.stefanini.hackaton.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-
-
-@NamedQueries({ @NamedQuery(name = "Heroi.getAll", query = "SELECT h FROM Heroi h") })
-@Entity
-@Table(name = "heroi")
-public class Heroi implements Serializable {
+public class HeroiDTO implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private Integer id;
-
+	
 	private Double ataque;
 	private Double defesa;
+	private Integer id;
 	private Double inteligencia;
 	private String nome;
 	private Double poder;
@@ -36,6 +19,8 @@ public class Heroi implements Serializable {
 	private Double forca;
 	private Double vida;
 
+	
+	
 	public Double getAtaque() {
 		return ataque;
 	}
